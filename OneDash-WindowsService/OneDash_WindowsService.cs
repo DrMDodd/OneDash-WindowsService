@@ -112,16 +112,16 @@ namespace OneDash_WindowsService
 		}
 
 
-		string windowsLogPath = @"c:\OneDashWS\WinServiceLog.txt";
+		string windowsLogPath = @"c:\Program Files\OneDash\Services\WinServiceLog.txt";
 
 		public OneDashService()
 		{
 			InitializeComponent();
 			// Set up all the log paths
- 			if(!Directory.Exists(@"c:\OneDashWS"))
-			{
-				Directory.CreateDirectory(@"c:\OneDashWS");
-			}
+			//if(!Directory.Exists(@"c:\OneDashWS"))
+			//{
+			//	Directory.CreateDirectory(@"c:\OneDashWS");
+			//}
 
 			updateLogFile del = new updateLogFile(DoWork);
 			del("hi");
@@ -132,7 +132,7 @@ namespace OneDash_WindowsService
 		{
 			using(StreamWriter sw = new StreamWriter(windowsLogPath, true))
 			{
-				sw.WriteLine(text.ToString());
+				sw.WriteLine(string.Format("{0}	{1}", DateTime.Now().ToString("yyyy-mm-dd hh:mm:ss"), text.ToString()));
 			}
 		}	
 	}
